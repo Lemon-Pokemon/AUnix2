@@ -1,0 +1,21 @@
+version: '3.8'
+services: 
+  webserver:
+    build: .
+    ports: 
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+  db: 
+    image: nouchka/sqlite3
+    volumes:
+      - ./data:/db
+    networks: 
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
